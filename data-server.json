@@ -1,0 +1,132 @@
+{
+    "nodes":[
+        {
+            "name": "cell_cube",
+            "id": 1,
+            "x": 100,
+            "y": 50,
+            "object": "entity",
+            "type": "endpoint",
+            "plantform": "phone",
+            "owner": "zhao"
+        },
+        {
+            "name": "MsgHub",
+            "id": 2,
+            "x": 100,
+            "y": -100,
+            "object": "entity",
+            "type": "hub",
+            "owner": "zhao"
+        },
+        {
+            "name": "MsgServer",
+            "id": 3,
+            "x": -400,
+            "y": -150,
+            "object": "entity",
+            "type": "server"
+        },
+        {
+            "name": "TrustHub",
+            "id": 4,
+            "x": 100,
+            "y": -250,
+            "object": "entity",
+            "type": "sechub",
+            "owner": "zhao",
+            "plugin": [
+                "crypto",
+                "signer",
+                "blackfilter",
+                "whitefilter"
+            ]
+        },
+        {
+            "name": "crypto",
+            "id": 5,
+            "x": -400,
+            "y": -350,
+            "object": "entity",
+            "type": "secplugin",
+            "owner": "zhao",
+            "desc": "一个基于可信根实现密钥交换的对称钥加密模块"
+        },
+        {
+            "name": "signer",
+            "id": 6,
+            "x": -200,
+            "y": -350,
+            "object": "entity",
+            "type": "secplugin",
+            "owner": "zhao",
+            "desc": "一个基于可信根实现可信签名的签名模块"
+        },
+        {
+            "name": "blackfilter",
+            "id": 7,
+            "x": 0,
+            "y": -350,
+            "object": "entity",
+            "type": "secplugin",
+            "owner": "zhao",
+            "desc": "一个黑名单过滤策略模块",
+            "policy":[]
+        },
+        {
+            "name": "whitefilter",
+            "id": 8,
+            "x": 200,
+            "y": -350,
+            "object": "entity",
+            "type": "secplugin",
+            "owner": "zhao",
+            "desc": "一个白名单过滤策略模块",
+            "policy": ["zhao"]
+        }
+    ],
+    "edges": [
+        {
+            "name": "general",
+            "from":1,
+            "to":2,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        },
+        {
+            "name": "general",
+            "from":2,
+            "to":3,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        },
+        {
+            "name": "private",
+            "from":1,
+            "to":2,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        },
+        {
+            "name": "private",
+            "from":2,
+            "to":3,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        },
+        {
+            "name": "announced",
+            "from":1,
+            "to":2,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        },
+        {
+            "name": "announced",
+            "from":2,
+            "to":3,
+            "object": "connector",
+            "route": ["cell_cube", "MsgHub", "MsgServer"]
+        }
+    ]
+}
